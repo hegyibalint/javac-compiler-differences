@@ -9,6 +9,8 @@ import com.sun.tools.javac.util.Log;
 import javax.tools.Diagnostic;
 import javax.tools.DiagnosticListener;
 import javax.tools.JavaFileObject;
+import java.io.IOException;
+import java.io.Writer;
 
 @ClientCodeWrapper.Trusted
 public class ContextEnrichedListener implements DiagnosticListener<JavaFileObject> {
@@ -28,4 +30,6 @@ public class ContextEnrichedListener implements DiagnosticListener<JavaFileObjec
         System.out.println("================================================================================");
         System.out.println();
     }
+
+
 }
