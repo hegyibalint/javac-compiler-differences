@@ -21,7 +21,11 @@ public class ContextEnrichedListener implements DiagnosticListener<JavaFileObjec
 
     @Override
     public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
+        System.out.println();
+        System.out.println("CONTEXT ENRICHED DIAGNOSTIC ====================================================");
         DiagnosticFormatter<JCDiagnostic> diagnosticFormatter = Log.instance(context).getDiagnosticFormatter();
         System.out.println(diagnosticFormatter.format((JCDiagnostic) diagnostic, null));
+        System.out.println("================================================================================");
+        System.out.println();
     }
 }
