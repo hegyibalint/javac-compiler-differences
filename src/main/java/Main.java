@@ -46,14 +46,18 @@ public class Main {
     }
 
     private static void compileWithJavacTool(List<File> inputFiles) {
-        JavacTool tool = JavacTool.create();
+        // Difference: we will hold the context
         Context context = new Context();
+
+        JavacTool tool = JavacTool.create();
         SimpleListener listener = new SimpleListener();
+        // Difference: we will use the context to enrich the listener
         DiagnosticListener<JavaFileObject> diagnosticListener = new ContextEnrichedListener(context);
 
         StandardJavaFileManager fileManager = tool.getStandardFileManager(listener, null, null);
         Iterable<? extends JavaFileObject> javaFileObjects = fileManager.getJavaFileObjectsFromFiles(inputFiles);
 
+        // Difference: we will pass the context shared by the listener
         JavacTask task = tool.getTask(null, fileManager, diagnosticListener, COMPILER_ARGS, null, javaFileObjects, context);
         task.call();
     }
